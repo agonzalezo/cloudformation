@@ -8,4 +8,6 @@ aws cloudformation deploy --stack-name ec2-04 --template-file template-ec2.yml -
 
 aws cloudformation deploy --stack-name netsys-vpc --parameter-overrides EnvironmentName=QA --template-file Infra/template-vpc.yml
 
-aws cloudformation deploy --stack-name webserver --template-file Infra/template-ec2.yml
+aws cloudformation deploy --stack-name webserver --template-file Infra/ec2-public.yml --parameter-overrides EnvironmentName=QA
+
+aws cloudformation deploy --stack-name ec2-private --template-file Infra/ec2-private.yml --parameter-overrides EnvironmentName=QA

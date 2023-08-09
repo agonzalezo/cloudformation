@@ -11,7 +11,7 @@ Parameters:
       - t2.micro
 
 Resources:
-  WebServer:
+  webserver01:
     Type: 'AWS::EC2::Instance'
     Properties: 
       ImageId: "ami-0dfcb1ef8550277af"
@@ -19,7 +19,7 @@ Resources:
       InstanceType: !Ref InstanceTypeParameter
       Tags:
         - Key: Name
-          Value: PublicVm01
+          Value: !Sub ${EnvironmentName}-webserver01
       SecurityGroupIds: 
         - Ref: SecurityGroupSSH
       SubnetId: !Select [ "0", !Split [ ",", !ImportValue VpcPublicSubnets ] ]
@@ -27,9 +27,11 @@ Resources:
   SecurityGroupSSH:
     Type: AWS::EC2::SecurityGroup
     Properties:
+      Tags:
+        - Key: Name
+          Value: !Sub ${EnvironmentName}-securityGroup-public
       GroupDescription: "Security group que permite acceso ssh"
       VpcId: !ImportValue MyVpcId
-
       SecurityGroupIngress:
         - IpProtocol: tcp
           FromPort: 22
