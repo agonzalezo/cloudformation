@@ -26,8 +26,7 @@ Resources:
           Value: !Sub ${EnvironmentName}-appserver01
       SecurityGroupIds: 
         - Ref: SecurityGroupSSH
-      SubnetId: !Select [ "0", !Split [ ",", !ImportValue VpcPrivateSubnets ] ]
-
+      SubnetId: !Select [ "0", !Split [ "," , Fn::ImportValue: !Sub "${EnvironmentName}-VPCPRIVATESUBNETS" ] ]  
   appserver02:
     Type: 'AWS::EC2::Instance'
     Properties: 
@@ -39,7 +38,7 @@ Resources:
           Value: !Sub ${EnvironmentName}-appserver02
       SecurityGroupIds: 
         - Ref: SecurityGroupSSH
-      SubnetId: !Select [ "1", !Split [ ",", !ImportValue VpcPrivateSubnets ] ]
+      SubnetId: !Select [ "1", !Split [ "," , Fn::ImportValue: !Sub "${EnvironmentName}-VPCPRIVATESUBNETS" ] ]  
 
   SecurityGroupSSH:
     Type: AWS::EC2::SecurityGroup
@@ -48,7 +47,9 @@ Resources:
         - Key: Name
           Value: !Sub ${EnvironmentName}-securityGroup-private
       GroupDescription: "Security group que permite acceso ssh"
-      VpcId: !ImportValue MyVpcId
+      VpcId: 
+        Fn::ImportValue: 
+          Fn::Sub: "${EnvironmentName}-VPCID"
       SecurityGroupIngress:
         - IpProtocol: tcp
           FromPort: 22

@@ -161,13 +161,13 @@ Resources:
       RouteTableId: !Ref PublicRouteTable
       SubnetId: !Ref PublicSubnet2
 
-  PrivateRouteTable1:
+  PrivateRouteTable:
     Type: AWS::EC2::RouteTable
     Properties:
       VpcId: !Ref VPC
       Tags:
         - Key: Name
-          Value: !Sub ${EnvironmentName}-Private Routes (AZ1)
+          Value: !Sub ${EnvironmentName}-Private Routes (AZ1-2)
 
   # DefaultPrivateRoute1:
   #   Type: AWS::EC2::Route
@@ -179,28 +179,13 @@ Resources:
   PrivateSubnet1RouteTableAssociation:
     Type: AWS::EC2::SubnetRouteTableAssociation
     Properties:
-      RouteTableId: !Ref PrivateRouteTable1
+      RouteTableId: !Ref PrivateRouteTable
       SubnetId: !Ref PrivateSubnet1
-
-  PrivateRouteTable2:
-    Type: AWS::EC2::RouteTable
-    Properties:
-      VpcId: !Ref VPC
-      Tags:
-        - Key: Name
-          Value: !Sub ${EnvironmentName}-Private Routes (AZ2)
-
-  # DefaultPrivateRoute2:
-  #   Type: AWS::EC2::Route
-  #   Properties:
-  #     RouteTableId: !Ref PrivateRouteTable2
-  #     DestinationCidrBlock: 0.0.0.0/0
-  #     NatGatewayId: !Ref NatGateway2
 
   PrivateSubnet2RouteTableAssociation:
     Type: AWS::EC2::SubnetRouteTableAssociation
     Properties:
-      RouteTableId: !Ref PrivateRouteTable2
+      RouteTableId: !Ref PrivateRouteTable
       SubnetId: !Ref PrivateSubnet2
 
   NoIngressSecurityGroup:
@@ -215,18 +200,18 @@ Outputs:
     Description: A reference to the created VPC
     Value: !Ref VPC
     Export: 
-      Name: MyVpcId
+      Name: !Sub "${EnvironmentName}-VPCID"
   PublicSubnets:
     Description: A list of the public subnets
     Value: !Join [ ",", [ !Ref PublicSubnet1, !Ref PublicSubnet2 ]]
     Export: 
-      Name: VpcPublicSubnets
+      Name: !Sub "${EnvironmentName}-VPCPUBLICSUBNETS"
 
   PrivateSubnets:
     Description: A list of the private subnets
     Value: !Join [ ",", [ !Ref PrivateSubnet1, !Ref PrivateSubnet2 ]]
     Export:
-      Name: VpcPrivateSubnets
+      Name: !Sub "${EnvironmentName}-VPCPRIVATESUBNETS"
 
   PublicSubnet1:
     Description: A reference to the public-subnetin the 1st Availability Zone
