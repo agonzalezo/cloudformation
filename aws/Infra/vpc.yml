@@ -11,27 +11,27 @@ Parameters:
   VpcCIDR:
     Description: Please enter the IP range (CIDR notation) for this VPC
     Type: String
-    Default: 10.0.0.0/16
+    Default: 10.100.0.0/16
 
   PublicSubnet1CIDR:
     Description: Please enter the IP range (CIDR notation) for the public-subnetin the first Availability Zone
     Type: String
-    Default: 10.0.150.0/24
+    Default: 10.100.150.0/24
 
   PublicSubnet2CIDR:
     Description: Please enter the IP range (CIDR notation) for the public-subnetin the second Availability Zone
     Type: String
-    Default: 10.0.160.0/24
+    Default: 10.100.160.0/24
 
   PrivateSubnet1CIDR:
     Description: Please enter the IP range (CIDR notation) for the private-subnetin the first Availability Zone
     Type: String
-    Default: 10.0.50.0/24
+    Default: 10.100.50.0/24
 
   PrivateSubnet2CIDR:
     Description: Please enter the IP range (CIDR notation) for the private-subnetin the second Availability Zone
     Type: String
-    Default: 10.0.60.0/24
+    Default: 10.100.60.0/24
 
 Resources:
   VPC:
