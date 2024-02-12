@@ -1,3 +1,6 @@
+## Description
+Cloudformation stack that create a bucket s3 and cloudfront distribution, the bucket s3 is used as web site content and the cloudfront as web access.
+
 # Create Stack
 - **Deploy Stack**
     ```bash
