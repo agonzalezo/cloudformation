@@ -26,3 +26,7 @@
 
     aws s3 ls $(aws cloudformation describe-stacks --stack-name s3-web --query 'Stacks[0].Outputs[?ExportName==`QA1-bucketName`].OutputValue' --output text)
     ```
+- **Get the domain name to access**
+    ```s3
+    aws cloudformation describe-stacks --stack-name s3-web --query 'Stacks[0].Outputs[?ExportName==`QA1-cdnDomain`].OutputValue' --output text
+    ```
