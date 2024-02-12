@@ -1,0 +1,9 @@
+{
+    "yaml.schemas": {
+        "https://raw.githubusercontent.com/awslabs/goformation/master/schema/cloudformation.schema.json": [
+            "file:///c%3A/Users/Alex/Documents/Ares/Developer/cloudformation/aws/s3-web/bucket.yml",
+            "untitled:Untitled-1",
+            "file:///c%3A/Users/Alex/Documents/Ares/Developer/cloudformation/s3-web/bucketCdn.yml"
+        ]
+    }
+}
